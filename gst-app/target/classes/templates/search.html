@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Page</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="container pt-5">
+        <h2>Search Product</h2>
+        <form>
+            <div class="form-group">
+                <label for="myInput">Product Code or Name:</label>
+                <input type="text" class="form-control" id="myInput"  placeholder="Enter Product Code or Name..." name="code" required>
+            </div>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Product_Code</th>
+                    <th>Product_Name</th>
+                    <th>Product_Price</th>
+                    <th>Product_GST</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody id="myTable">
+                    <tr th:each="product:${productlist}">
+                        <td th:text = "${product.id}"></td>
+                        <td th:text = "${product.name}"></td>
+                        <td th:text = "${product.price}"></td>
+                        <td th:text = "${product.gst}"></td>
+                        <td>
+                            <a th:href="@{'/qty/'+${product.id}}" class="btn btn-success" role="button">Add Item</a>
+                        <td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="/bill" class="btn btn-primary" role="button" >Back</a>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

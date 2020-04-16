@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Page</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+        <a class="navbar-brand" href="/">GST BILLING APP </a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Product List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/bill">Billing</a>
+            </li>
+        </ul>
+    </nav>
+
+   <div class = "container">
+       <div class="row" style="margin-top:2%">
+           <div class="col">
+               <h1 >Product List</h1>
+           </div>
+           <div class="col">
+               <a href="new" class="btn btn-success" role="button" style="float: right; margin-top: 2%">Add Products</a>
+           </div>
+       </div>
+        <table class="table table-hover">
+            <thead>
+            <th>Product_Code</th>
+            <th>Product_Name</th>
+            <th>Product_Price</th>
+            <th>Product_GST</th>
+            <th>Actions</th>
+            </thead>
+            <tbody>
+                <tr th:each="product:${productlist}">
+                    <td th:text = "${product.id}"></td>
+                    <td th:text = "${product.name}"></td>
+                    <td th:text = "${product.price}"></td>
+                    <td th:text = "${product.gst}"></td>
+                    <td>
+                        <a th:href="@{'/edit/'+${product.id}}" class="btn btn-warning" role="button">Edit</a>
+                        <a th:href="@{'/delete/'+${product.id}}" class="btn btn-danger" role="button">Delete</a>
+                    <td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>

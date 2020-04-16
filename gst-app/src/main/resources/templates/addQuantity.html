@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Page</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container pt-5">
+        <h2>Update Product <span th:text="${product.id}"></span></h2>
+        <form action="#" th:action="@{'/saveitem/'+${product.id}}"  method="post">
+            <h4>Product Code: <span th:text = "${product.id}"></span></h4>
+            <h4>Product Name: <span th:text = "${product.name}"></span></h4>
+            <h4>Product Price: <span th:text = "${product.price}"></span></h4>
+            <h4>Product GST: <span th:text = "${product.gst}"></span></h4>
+            <div class="form-group">
+                <label for="qty">Product Qty:</label>
+                <input type="text" class="form-control" id="qty" value="1" name="qty" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/bill" class="btn btn-primary" role="button" >Back</a>
+        </form>
+    </div>
+</body>
+</html>
