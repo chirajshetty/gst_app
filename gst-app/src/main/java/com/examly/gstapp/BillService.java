@@ -31,8 +31,12 @@ public class BillService {
     }
 
     public double getTotalAmount() {
-        double amt = repo.getTotalAmount();
-        System.out.println(amt);
+        double amt;
+        if(repo.getRows()==0){
+            amt=0;
+        }else{
+            amt=repo.getTotalAmount();
+        }
         return amt;
     }
 }
